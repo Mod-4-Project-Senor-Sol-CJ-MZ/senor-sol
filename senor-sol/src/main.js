@@ -9,11 +9,15 @@ import './style.css'
 // const testRoute2 = async (url) => {
 //   const response = await fetch(url)
 //   const data = await response.json()
-//   console.log('data:', data.results.sunrise, data.results.sunset);
+//   console.log('data:', data);
+//   // console.log('data:', data.results.sunrise, data.results.sunset);
 // }
 
+
 // const url1 = 'http://api.zippopotam.us/us/90210';
-//   const url2 = 'https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400';
+// // const url2 = 'https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400';
+// const url2 = `https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&date=2023-06-25`
+// // const url2 = `https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400&date=today`
 // testRoute(url1);
 // testRoute2(url2);
 
@@ -32,8 +36,8 @@ const getLocationData = async (zipCode) => {
   return { latitude, longitude, city, state };
 }
 
-const getSunriseSunset = async (latitude, longitude) => {
-  const sunriseSunsetUrl = `https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}&formatted=0`;
+const getSunriseSunset = async (latitude, longitude, date) => {
+  const sunriseSunsetUrl = `https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}&date=${date}&formatted=0`;
   const response = await fetch(sunriseSunsetUrl);
   if (!response.ok) {
       throw new Error(`Error fetching data from Sunrise-Sunset API: ${response.status}`);
@@ -46,11 +50,12 @@ const getSunriseSunset = async (latitude, longitude) => {
 
 const main = async () => {
   const zipCode = prompt("Enter a US ZIP code:");
-  // change when create form, placeholder for now 
+  const date = prompt("Enter a date (YYYY-MM-DD):");
   try {
       const { latitude, longitude, city, state } = await getLocationData(zipCode);
-      const { sunrise, sunset } = await getSunriseSunset(latitude, longitude);
-      console.log(`Location: ${city}, ${state}`);
+      const { sunrise, sunset } = await getSunriseSunset(latitude, longitude, date);
+      console.log(`Location: ${city}, ${state} ${zipCode}`);
+      console.log(`Date: ${date}`);
       console.log(`Sunrise: ${new Date(sunrise).toLocaleTimeString()}`);
       console.log(`Sunset: ${new Date(sunset).toLocaleTimeString()}`);
   } catch (error) {
@@ -59,3 +64,5 @@ const main = async () => {
 }
 
 main();
+
+
