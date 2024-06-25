@@ -10,5 +10,23 @@
   <body>
     <div id="app"></div>
     <h1>Señor Sol</h1>
+    <form aria-label="Form for sunset/sunrise" id="sunForm">
+      <label for="zipcode" aria-label="Zipcode">Zipcode:</label>
+      <input name="zipcode" id="zipcode" type="text" required minlength="5" maxlength="5" placeholder="12345" pattern=^[0-9]{5}(?:-[0-9]{4})?$> <!-- use regex so that it is numbers only -->
+      <br>
+      <label for="date" aria-label="Date">Date:</label>
+      <input type="date" name="date" id="date" required minlength="10">
+      <br>
+      <label for="timezone" aria-label="Timezone"></label>
+      <select name="timezone" id="timezone">
+        <option value="EST">EST</option> 
+        <option value="PST">PST</option>
+        <option value="CST">CST</option>
+        <option value="MST">MST</option>
+        <!-- est, cst, mst, pst,  -->
+      </select>
+      <br>
+      <button aria-label="submit button" id="submit-button">Submit</button>
+    </form>
   </body>
 </html>

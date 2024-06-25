@@ -28,6 +28,12 @@ const getSunriseSunset = async (latitude, longitude, date) => {
   return { sunrise, sunset };
 }
 
+const createForm = () => {
+  `
+  <label for='zipcode'
+  `
+}
+
 
 // const getSunriseSunsetMoreInfo = async (latitude, longitude, date) => {
   //   const sunriseSunsetUrl = `https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}&date=${date}&formatted=0`;
@@ -40,21 +46,21 @@ const getSunriseSunset = async (latitude, longitude, date) => {
     //   return { };
     // }
     
-    const main = async () => {
-      const zipCode = prompt("Enter a US ZIP code:");
-      const date = prompt("Enter a date (YYYY-MM-DD):");
-      // const timeZone = prompt("Enter a time zone:");
-      try {
-    const { latitude, longitude, city, state } = await getLocationData(zipCode);
-      const { sunrise, sunset } = await getSunriseSunset(latitude, longitude, date);
-      console.log(`Location: ${city}, ${state} ${zipCode}`);
-      console.log(`Date: ${date}`);
-      console.log(`Sunrise: ${new Date(sunrise).toLocaleTimeString()}`);
-      console.log(`Sunset: ${new Date(sunset).toLocaleTimeString()}`);
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  //   const main = async () => {
+  //     const zipCode = prompt("Enter a US ZIP code:");
+  //     const date = prompt("Enter a date (YYYY-MM-DD):");
+  //     const timeZone = prompt("Enter a time zone:");
+  //     try {
+  //   const { latitude, longitude, city, state } = await getLocationData(zipCode);
+  //     const { sunrise, sunset } = await getSunriseSunset(latitude, longitude, date);
+  //     console.log(`Location: ${city}, ${state} ${zipCode}`);
+  //     console.log(`Date: ${date}`);
+  //     console.log(`Sunrise: ${new Date(sunrise).toLocaleTimeString()}`);
+  //     console.log(`Sunset: ${new Date(sunset).toLocaleTimeString()}`);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
   
   main();
   
