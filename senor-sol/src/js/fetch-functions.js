@@ -1,15 +1,17 @@
-export const getLocationData = async (zipCode) => {
+export const getLocationData = async (zipCode = 11232) => {
   const zipcodeUrl = `https://api.zippopotam.us/us/${zipCode}`;
   const response = await fetch(zipcodeUrl);
   if (!response.ok) {
     throw new Error(`Error fetching data from Zippopotam API: ${response.status}`);
   }
   const data = await response.json();
+  // console.log(data)
   const place = data.places[0];
   const latitude = place.latitude;
   const longitude = place.longitude;
   const city = place['place name'];
   const state = place['state abbreviation'];
+  // console.log({ latitude, longitude, city, state })
   return { latitude, longitude, city, state };
 }
 
