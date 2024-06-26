@@ -12,6 +12,11 @@ export const handleSubmit = async (event) => {
   const zipcodeValue = document.getElementById("results-zipcode");
   zipcodeValue.textContent = "Zipcode: " + formObj.zipcode;
 
+  const isValidZipcode = await validateZipcode(formObj.zipcode);
+  if (!isValidZipcode) {
+    return alert('Invalid zipcode. Please enter a valid US zipcode.');
+  }
+
   const dateValue = document.getElementById("results-date");
   dateValue.textContent = "Date: " + formObj.date;
 
@@ -39,6 +44,16 @@ export const handleSubmit = async (event) => {
   }
 
   form.reset();
+};
+
+const validateZipcode = async (zipcode) => {
+  try {
+    const { city } = await getLocationData(zipcode);
+    return city !== undefined;
+  } catch (error) {
+    console.warn('Error validating zipcode:', error);
+    return false;
+  }
 };
 
 const convertToTimezone = (time, timeZone) => {
