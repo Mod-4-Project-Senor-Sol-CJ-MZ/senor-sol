@@ -8,3 +8,5 @@ const main = () => {
 };
 
 main();
+
+console.log("Bruh")
