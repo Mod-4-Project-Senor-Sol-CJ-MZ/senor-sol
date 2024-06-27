@@ -5,7 +5,7 @@ import { getLocationData, getSunriseSunset, getSunriseSunsetMoreInfo } from './f
 import { convertToTimezone } from './helper-functions';
 
 export const resultsContainerDiv = async (formObj) => {
-  const ul = document.getElementById("reviews-list");
+  const ul = document.getElementById("results-list");
   ul.innerHTML = ``;
   
   const zipcode = document.createElement("li");
