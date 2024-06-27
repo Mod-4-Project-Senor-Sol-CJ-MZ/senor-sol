@@ -1,40 +1,46 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/mod-4-senor-sol%2520/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Señor Sol</title>
-    <script type="module" crossorigin src="/mod-4-senor-sol%20/assets/index-C5zJIGB-.js"></script>
-    <link rel="stylesheet" crossorigin href="/mod-4-senor-sol%20/assets/index-B_SY1GJM.css">
-  </head>
-  <body>
-    <div id="app"></div>
-    <h1>Señor Sol</h1>
-    <form aria-label="Form for sunset/sunrise" id="sunForm">
-      <h2 id="from-header">Select Time and Place</h2>
-      <label for="zipcode" aria-label="Zipcode">Zipcode:</label>
-      <input name="zipcode" id="zipcode" type="text" required minlength="5" maxlength="5" placeholder="12345" pattern=^[0-9]{5}(?:-[0-9]{4})?$> <!-- use regex so that it is numbers only -->
-      <br>
-      <label for="date" aria-label="Date">Date:</label>
-      <input type="date" name="date" id="date" required minlength="10">
-      <br>
-      <label for="timezone" aria-label="Timezone"></label>
-      <select name="timezone" id="timezone">
-        <option value="EST">EST</option> 
-        <option value="PST">PST</option>
-        <option value="CST">CST</option>
-        <option value="MST">MST</option>
-      </select>
-      <br>
-      <button aria-label="submit button" id="submit-button">Submit</button>
-    </form>
-    <div id="results">
-      <p id="results-zipcode">Zipcode: </p>
-      <p id="results-date">Date: </p>
-      <p id="results-timezone">Timezone: </p>
-      <p id="results-sunrise">Sunrise: </p>
-      <p id="results-sunset">Sunset: </p>
-    </div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Señor Sol</title>
+  <script type="module" crossorigin src="/mod-4-senor-sol%20/assets/index-B1ePJ8i6.js"></script>
+  <link rel="stylesheet" crossorigin href="/mod-4-senor-sol%20/assets/index-B_SY1GJM.css">
+</head>
+<body>
+  <div id="app"></div>
+  <h1>Señor Sol</h1>
+  <form aria-label="Form for sunset/sunrise" id="sunForm">
+    <h2 id="from-header">Select Time and Place</h2>
+    <label for="zipcode" aria-label="Zipcode">Zipcode:</label>
+    <input name="zipcode" id="zipcode" type="text" required minlength="5" maxlength="5" placeholder="12345" pattern=^[0-9]{5}(?:-[0-9]{4})?$>
+    <br>
+    <label for="date" aria-label="Date">Date:</label>
+    <input type="date" name="date" id="date" required minlength="10">
+    <br>
+    <label for="timezone" aria-label="Timezone"></label>
+    <select name="timezone" id="timezone">
+      <option value="America/New_York">EST</option>
+      <option value="America/Los_Angeles">PST</option>
+      <option value="America/Chicago">CST</option>
+      <option value="America/Denver">MST</option>
+    </select>
+    <br>
+    <button aria-label="submit button" id="submit-button">Submit</button>
+  </form>
+  <!-- need to change into dom manipulation -->
+  <section id="default-sun-container">
+    <h2 id="default-sun-heading">Default Info</h2>
+    <ul id="default-info"></ul>
+  </section>
+  <!-- connect with fetch-functions -->
+  <section id="results-section" aria-labelledby="results-section">
+    <h2>Results</h2>
+    <ul id="results-list">
+      <!-- dom manipulation will connect here -->
+    </ul>
+  </section>
+</body>
 </html>
+
