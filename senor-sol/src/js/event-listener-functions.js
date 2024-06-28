@@ -1,5 +1,10 @@
 import { resultsContainerDiv } from './dom-helpers';
+
+import { defaultContainerDiv, renderMoreInfo } from './render-functions'
+import { getLocationData, getSunriseSunsetMoreInfo } from './fetch-functions';
+
 import { validateZipcode, generateRandomZipcode } from './helper-functions';
+
 
 // function to handle form submission 
 export const handleSubmit = async (event) => {
@@ -9,7 +14,7 @@ export const handleSubmit = async (event) => {
   const formData = new FormData(form);
   const formObj = Object.fromEntries(formData);
 
-  console.log('Form Data:', formObj);
+  // console.log('Form Data:', formObj);
 
   const isValidZipcode = await validateZipcode(formObj.zipcode);
   if (!isValidZipcode) {
@@ -21,11 +26,25 @@ export const handleSubmit = async (event) => {
   
   
   
-  //THIS IS FOR TESTING REMOVE ONCE YOU FIGURED OUT HOW TO AUTOMATICALLY DISPLAY IT ON LOAD
-  await defaultContainerDiv(formObj)
-
   form.reset();
 };
+
+
+export const handleMoreInfo = async (event) => {
+  // console.log(event.target.id)
+  const jsonObj = event.target.id
+  const latLongDateObj = JSON.parse(jsonObj)
+  // console.log(latLongDateObj)
+
+  const {zipcode, date, latitude, longitude, timezone} = latLongDateObj
+  // console.log(moreInfoUl)
+  // const latAndLong = await getLocationData(zipcode)
+  console.log(latLongDateObj)
+
+  const moreInfo = await getSunriseSunsetMoreInfo(latitude, longitude, date)
+
+  renderMoreInfo(moreInfo, zipcode, timezone)
+}
 
 // function to handle lucky click button 
 export const handleLuckyClick = async () => {

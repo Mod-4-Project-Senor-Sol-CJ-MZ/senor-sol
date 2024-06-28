@@ -8,41 +8,48 @@
   <title>Señor Sol</title>
 </head>
 <body>
-  <div id="app"></div>
-  <h1>Señor Sol</h1>
-  <form aria-labelledby="form-header" id="sunForm">
-    <h2 id="form-header">Select Time and Place</h2>
-    <label for="zipcode">Zipcode:</label>
-    <input name="zipcode" id="zipcode" type="text" required minlength="5" maxlength="5" placeholder="12345" pattern="^[0-9]{5}(?:-[0-9]{4})?$">
-    <br>
-    <label for="date">Date:</label>
-    <input type="date" name="date" id="date" required minlength="10">
-    <br>
-    <label for="timezone">Timezone:</label>
-    <select name="timezone" id="timezone">
-      <option value="America/New_York">EST</option>
-      <option value="America/Los_Angeles">PST</option>
-      <option value="America/Chicago">CST</option>
-      <option value="America/Denver">MST</option>
-    </select>
-    <br>
-    <button aria-label="Submit">Submit</button>
-  </form>
-  <section aria-labelledby="lucky-header" id="lucky-container">
-    <h3 id="lucky-header">Feeling Lucky?</h3>
-    <button aria-label="Get random information" id="lucky-button">Click Me!</button>
-  </section>
-  <!-- need to change into dom manipulation -->
-  <section aria-labelledby="default-sun-heading" id="default-sun-container">
-    <h2 id="default-sun-heading">Default Info</h2>
-    <ul id="default-info"></ul>
-  </section>
-  <!-- connect with fetch-functions -->
-  <section aria-labelledby="results-header" id="results-section">
-    <h2 id="results-header">Results</h2>
-    <ul id="results-list">
-      <!-- dom manipulation will connect here -->
-    </ul>
-  </section>
+  <main>
+    <div id="app"></div>
+    <h1>Señor Sol</h1>
+    <form aria-label="Form for sunset/sunrise" id="sunForm">
+      <h2 id="from-header">Select Time and Place</h2>
+      <label for="zipcode" aria-label="Zipcode">Zipcode:</label>
+      <input name="zipcode" id="zipcode" type="text" required minlength="5" maxlength="5" placeholder="12345" pattern=^[0-9]{5}(?:-[0-9]{4})?$>
+      <br>
+      <label for="date" aria-label="Date">Date:</label>
+      <input type="date" name="date" id="date" required minlength="10">
+      <br>
+      <label for="timezone" aria-label="Timezone"></label>
+      <select name="timezone" id="timezone">
+        <option value="America/New_York">EST</option>
+        <option value="America/Los_Angeles">PST</option>
+        <option value="America/Chicago">CST</option>
+        <option value="America/Denver">MST</option>
+      </select>
+      <br>
+      <button aria-label="submit button" id="submit-button">Submit</button>
+    </form>
+    <section aria-labelledby="lucky-header" id="lucky-container">
+      <h3 id="lucky-header">Feeling Lucky?</h3>
+      <button aria-label="Get random information" id="lucky-button">Click Me!</button>
+    </section>
+    <!-- need to change into dom manipulation -->
+ 
+  
+  
+    <section aria-labelledby="default-sun-heading" id="default-sun-container" >
+      <h2 id="default-sun-heading">Default Info</h2>
+      <ul id="default-info"></ul>
+    </section>
+    <!-- connect with fetch-functions -->
+    <section id="results-section" aria-labelledby="results-section">
+      <h2 id="results-header">Results</h2>
+    <!--    ul id="results-list    -->
+      <div id ="results-container">
+        
+      </div>
+    </section>
+  
+  </main>
 </body>
 </html>

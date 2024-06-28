@@ -47,4 +47,55 @@ export const defaultContainerDiv = async (latLongObj, sunRiseSetDateObj) => {
   } catch (error) {
     console.warn(error);
   }
+
 };
+
+export const renderMoreInfo = (moreInfoObj, zipcode, timezone) => {
+  const moreInfoUl = document.getElementById(`ul:${zipcode}`)
+  // console.log(moreInfoUl)
+
+  moreInfoUl.innerHTML = ""
+
+  const {solarNoon, dayLength, civilTwilightBegin, civilTwilightEnd, nauticalTwilightBegin, nauticalTwilightEnd, astTwilightBegin, astTwilightEnd} = moreInfoObj
+
+  const solarNoonLi = document.createElement("li")
+  solarNoonLi.textContent = `Solar Noon: ${convertToTimezone(solarNoon, timezone)}`
+
+  const convertSeconds = (seconds) => {
+    const hours = Math.floor(seconds / 3600)
+    const minutes = Math.floor((seconds % 3600) / 60)
+  
+    if (hours > 0) {
+      return `${hours} hour${hours > 1 ? 's' : ''} : ${minutes} minute${minutes > 1 ? 's' : ''}`
+    } else {
+      return `${minutes} minute${minutes > 1 ? 's' : ''}`
+    }
+  }
+
+
+  const dayLengthLi = document.createElement("li")
+  dayLengthLi.textContent = ` Day Length: ${convertSeconds(dayLength)}`
+
+  const civilTwilightBeginLi = document.createElement("li")
+  civilTwilightBeginLi.textContent = `Civil Twilight Begin: ${convertToTimezone(civilTwilightBegin, timezone)}`
+
+  const civilTwilightEndLi = document.createElement("li")
+  civilTwilightEndLi.textContent = `Civil Twilight End: ${convertToTimezone(civilTwilightEnd, timezone)}`
+
+  const nauticalTwilightBeginLi = document.createElement("li")
+  nauticalTwilightBeginLi.textContent = `Nautical Twilight Begin: ${convertToTimezone(nauticalTwilightBegin, timezone)}`
+  
+  const nauticalTwilightEndLi = document.createElement("li")
+  nauticalTwilightEndLi.textContent = `Nautical Twilight End: ${convertToTimezone(nauticalTwilightEnd, timezone)}`
+  
+  const astTwilightBeginLi = document.createElement("li")
+  astTwilightBeginLi.textContent = `Astronomical Twilight Begin: ${convertToTimezone(astTwilightBegin, timezone)}`
+  
+  const astTwilightEndLi = document.createElement("li")
+  astTwilightEndLi.textContent = `Astronomical Twilight End: ${convertToTimezone(astTwilightEnd, timezone)}`
+
+  moreInfoUl.append(solarNoonLi, dayLengthLi, civilTwilightBeginLi, civilTwilightEndLi, nauticalTwilightBeginLi, nauticalTwilightEndLi, astTwilightBeginLi, astTwilightEndLi)
+}
+
+};
+
