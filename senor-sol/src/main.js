@@ -6,9 +6,9 @@ import { userDefaultLatnLong, getDefaultSunriseSunset } from './js/fetch-functio
 
 const main = async () => {
   const latLongObj = await userDefaultLatnLong();
-  console.log(latLongObj)
+  // console.log(latLongObj)
   const res = await getDefaultSunriseSunset(latLongObj)
-  console.log(res)
+  // console.log(res)
   await defaultContainerDiv(latLongObj, res)
 
   

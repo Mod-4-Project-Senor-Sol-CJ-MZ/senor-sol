@@ -22,8 +22,9 @@ export const handleSubmit = async (event) => {
   
   
   
-  //THIS IS FOR TESTING REMOVE ONCE YOU FIGURED OUT HOW TO AUTOMATICALLY DISPLAY IT ON LOAD
-  await defaultContainerDiv(formObj)
-
   form.reset();
 };
+
+const handleMoreInfo = () => {
+
+}

@@ -5,8 +5,29 @@ import { getLocationData, getSunriseSunset, getSunriseSunsetMoreInfo } from './f
 import { convertToTimezone } from './helper-functions';
 
 export const resultsContainerDiv = async (formObj) => {
-  const ul = document.getElementById("results-list");
-  ul.innerHTML = ``;
+  const resultsContainer = document.getElementById("results-container");
+  resultsContainer.innerHTML = ``;
+
+  const latestResultContainer = document.createElement("div")
+  latestResultContainer.classList.add("latest-result-container")
+
+  const moreInfoButtonContainer = document.createElement("div")
+  moreInfoButtonContainer.classList.add("more-info-button")
+  
+  const moreInfoButton = document.createElement("button")
+  moreInfoButton.classList.add("more-info-button")
+  moreInfoButton.textContent = "More Info!"
+
+  moreInfoButtonContainer.append(moreInfoButton)
+
+
+  const ulContainer = document.createElement("div")
+  ulContainer.classList.add("ul-container")
+
+  const ul = document.createElement("ul")
+  ul.classList.add("results-list")
+
+  ulContainer.append(ul)
   
   const zipcode = document.createElement("li");
   zipcode.classList.add("results-zipcode")
@@ -31,6 +52,14 @@ export const resultsContainerDiv = async (formObj) => {
 
   const sunset = document.createElement("li");
   sunset.classList.add("results-sunset");
+
+  //appending everything together
+  resultsContainer.append(latestResultContainer)
+  
+  
+  latestResultContainer.append(ulContainer, moreInfoButtonContainer)
+
+
 
   ul.append(zipcode, date, timezone, location, coords, sunrise, sunset);
 
