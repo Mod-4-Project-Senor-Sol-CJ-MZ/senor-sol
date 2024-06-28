@@ -1,6 +1,6 @@
 // importing functions to use in form submission handling
-  // getLocationData & getSunriseSunset
-    // will use getSunriseSunsetMoreInfo in eventListener for button after dom/render
+// getLocationData & getSunriseSunset
+// will use getSunriseSunsetMoreInfo in eventListener for button after dom/render
 import { getLocationData, getSunriseSunset, getSunriseSunsetMoreInfo } from './fetch-functions';
 import { convertToTimezone } from './helper-functions';
 
@@ -50,6 +50,3 @@ export const resultsContainerDiv = async (formObj) => {
     console.warn(error);
   }
 };
-
-
-

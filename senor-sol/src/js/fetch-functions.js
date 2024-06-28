@@ -143,6 +143,3 @@ export const getSunriseSunsetMoreInfo = async (latitude, longitude, date) => {
     throw error;
   }
 }
-
-
-

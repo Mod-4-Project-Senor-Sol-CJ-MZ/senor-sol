@@ -1,13 +1,7 @@
-import { getLocationData, getSunriseSunset, getSunriseSunsetMoreInfo } from './fetch-functions';
-import { convertToTimezone } from './helper-functions';
-
 export const defaultContainerDiv = async (latLongObj, sunRiseSetDateObj) => {
   const ul = document.getElementById("default-info");
   // ul.innerHTML = ``;
   console.log(latLongObj, sunRiseSetDateObj)
-  
-
-
   
   // const zipcode = document.createElement("li");
   // zipcode.classList.add("default-zipcode")
@@ -16,6 +10,8 @@ export const defaultContainerDiv = async (latLongObj, sunRiseSetDateObj) => {
   const date = document.createElement("li");
   date.classList.add("default-date")
   date.textContent = `Date: ${sunRiseSetDateObj.currentDate}`;
+  // date.textContent = `Date: ${new Date().toISOString().split('T')[0]}`;
+
   // console.log('testttt', `Date: ${sunRiseSetDateObj.currentDate}`)
 
   // const timezone = document.createElement("li");
@@ -52,4 +48,3 @@ export const defaultContainerDiv = async (latLongObj, sunRiseSetDateObj) => {
     console.warn(error);
   }
 };
-

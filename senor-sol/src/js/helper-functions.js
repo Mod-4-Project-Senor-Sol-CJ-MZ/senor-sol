@@ -27,3 +27,13 @@ export const convertToTimezone = (time, timeZone) => {
     timeZone: timeZone
   }).format(date);
 };
+
+// function to randomly generate zipcodes 
+export const generateRandomZipcode = () => {
+  // min, max given by API
+    // min can't be 00210 due to being an octal number 
+      // future prob to worry about beginning two 0's (for now will regenerate until valid)
+  const min = 210;
+  const max = 99950;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
