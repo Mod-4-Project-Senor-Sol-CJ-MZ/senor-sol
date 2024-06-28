@@ -15,7 +15,7 @@ const main = async () => {
   await defaultContainerDiv(latLongObj, res)
 
   
-  const form = document.querySelector("#sunForm");
+  const form = document.querySelector("#sun-form");
   form.addEventListener("submit", handleSubmit);
 
 
