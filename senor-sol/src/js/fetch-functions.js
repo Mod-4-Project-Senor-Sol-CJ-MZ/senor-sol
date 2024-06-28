@@ -1,3 +1,80 @@
+// functions to get default lat and long of current user
+
+
+// export const userDefaultLatnLong = () => {
+//   if (!navigator.geolocation) return { latitude: 0, longitude: 0 }
+  
+//   const success = pos => {
+//     const { latitude, longitude } = pos.coords 
+//     return { latitude, longitude }
+//   }
+//   const error = err => console.warn(`ERROR(${err.code}): ${err.message}`);
+//   navigator.geolocation.getCurrentPosition(pos => {
+//       const { latitude, longitude } = pos.coords 
+//       return { latitude, longitude }
+//   }, error);
+// }
+
+export const userDefaultLatnLong = () => {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      resolve({ latitude: 0, longitude: 0 });
+      return;
+    }
+
+    const success = pos => {
+      const { latitude, longitude } = pos.coords;
+      resolve({ latitude, longitude });
+    };
+
+    const error = err => {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+      resolve({ latitude: 0, longitude: 0 });
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error);
+  });
+}
+
+
+export const getDefaultSunriseSunset = async (latLongObj) => {
+  const latitude = latLongObj.latitude
+  const longitude = latLongObj.longitude
+  const sunriseSunsetUrl = `https://api.sunrise-sunset.org/json?lat=${latitude}&lng=${longitude}&date=today&formatted=0`;
+  try {
+    const response = await fetch(sunriseSunsetUrl);
+    if (!response.ok) {
+      throw new Error(`Error fetching data from Sunrise-Sunset API: ${response.status}`);
+    }
+    const data = await response.json();
+    const sunrise = new Date(data.results.sunrise)
+    // const sunrise = data.results.sunrise;
+    const sunset = new Date(data.results.sunset)
+    // const sunset = data.results.sunset;
+    // console.log(sunrise, sunset)
+    const sunrise1 = sunrise.toLocaleTimeString('en-US')
+    const sunset1 = sunset.toLocaleTimeString('en-US')
+
+    console.log(sunrise1, sunset1)
+
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+
+  // This arrangement can be altered based on how we want the date's format to appear.
+  let currentDate = `${year}-${month}-${day}`;
+  console.log(currentDate); // "17-6-2022"
+    // return destructured variables to reuse in other functions 
+    const sunRiseSetDateObj = { sunrise1, sunset1, currentDate }
+    return sunRiseSetDateObj;
+  } catch (error) {
+    console.warn('Warning in getSunriseSunset:', error);
+    throw error;
+  }
+}
+
 // // function to fetch location data based on provided zip code 
 export const getLocationData = async (zipCode) => {
   const zipcodeUrl = `https://api.zippopotam.us/us/${zipCode}`;
@@ -66,6 +143,3 @@ export const getSunriseSunsetMoreInfo = async (latitude, longitude, date) => {
     throw error;
   }
 }
-
-
-

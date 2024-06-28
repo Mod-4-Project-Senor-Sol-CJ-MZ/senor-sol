@@ -1,5 +1,5 @@
 import { resultsContainerDiv } from './dom-helpers';
-import { validateZipcode } from './helper-functions';
+import { validateZipcode, generateRandomZipcode } from './helper-functions';
 
 // function to handle form submission 
 export const handleSubmit = async (event) => {
@@ -21,3 +21,26 @@ export const handleSubmit = async (event) => {
 
   form.reset();
 };
+
+// function to handle lucky click button 
+export const handleLuckyClick = async () => {
+  let isValid = false;
+  let randomZipcode;
+
+  // if not valid, keep generating until it is
+  while (!isValid) {
+    randomZipcode = generateRandomZipcode();
+    isValid = await validateZipcode(randomZipcode);
+  }
+
+  const formObj = {
+    zipcode: randomZipcode,
+    // Current date in YYYY-MM-DD format
+    date: new Date().toISOString().split('T')[0], 
+    // User's local timezone
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone 
+  };
+
+  await resultsContainerDiv(formObj);
+};
+
