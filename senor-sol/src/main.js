@@ -1,7 +1,7 @@
 import './style.css'
 import { handleSubmit } from './js/event-listener-functions';
-import { defaultContainerDiv } from './js/render-functions'
-import { userDefaultLatnLong, getDefaultSunriseSunset } from './js/fetch-functions'
+import { defaultContainerDiv, renderMoreInfo } from './js/render-functions'
+import { userDefaultLatnLong, getDefaultSunriseSunset, getSunriseSunsetMoreInfo } from './js/fetch-functions'
 
 
 const main = async () => {
@@ -14,6 +14,8 @@ const main = async () => {
   
   const form = document.querySelector("#sunForm");
   form.addEventListener("submit", handleSubmit);
+
+
 };
 
 main();

@@ -1,6 +1,7 @@
 import { resultsContainerDiv } from './dom-helpers';
 import { validateZipcode } from './helper-functions';
-import { defaultContainerDiv } from './render-functions'
+import { defaultContainerDiv, renderMoreInfo } from './render-functions'
+import { getLocationData, getSunriseSunsetMoreInfo } from './fetch-functions';
 
 // function to handle form submission 
 export const handleSubmit = async (event) => {
@@ -10,7 +11,7 @@ export const handleSubmit = async (event) => {
   const formData = new FormData(form);
   const formObj = Object.fromEntries(formData);
 
-  console.log('Form Data:', formObj);
+  // console.log('Form Data:', formObj);
 
   const isValidZipcode = await validateZipcode(formObj.zipcode);
   if (!isValidZipcode) {
@@ -25,6 +26,18 @@ export const handleSubmit = async (event) => {
   form.reset();
 };
 
-const handleMoreInfo = () => {
+export const handleMoreInfo = async (event) => {
+  // console.log(event.target.id)
+  const jsonObj = event.target.id
+  const latLongDateObj = JSON.parse(jsonObj)
+  // console.log(latLongDateObj)
 
+  const {zipcode, date, latitude, longitude, timezone} = latLongDateObj
+  // console.log(moreInfoUl)
+  // const latAndLong = await getLocationData(zipcode)
+  console.log(latLongDateObj)
+
+  const moreInfo = await getSunriseSunsetMoreInfo(latitude, longitude, date)
+
+  renderMoreInfo(moreInfo, zipcode, timezone)
 }

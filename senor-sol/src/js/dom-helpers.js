@@ -3,8 +3,13 @@
     // will use getSunriseSunsetMoreInfo in eventListener for button after dom/render
 import { getLocationData, getSunriseSunset, getSunriseSunsetMoreInfo } from './fetch-functions';
 import { convertToTimezone } from './helper-functions';
+import { renderMoreInfo } from './render-functions';
+import { handleMoreInfo } from './event-listener-functions';
 
 export const resultsContainerDiv = async (formObj) => {
+
+  
+
   const resultsContainer = document.getElementById("results-container");
   resultsContainer.innerHTML = ``;
 
@@ -18,8 +23,21 @@ export const resultsContainerDiv = async (formObj) => {
   moreInfoButton.classList.add("more-info-button")
   moreInfoButton.textContent = "More Info!"
 
+  //adding event listener to more info button
+  moreInfoButton.addEventListener("click", handleMoreInfo)
+
   moreInfoButtonContainer.append(moreInfoButton)
 
+  const moreInfoContainer = document.createElement("div")
+  moreInfoContainer.classList.add("more-info-container")
+
+  const moreInfoUl = document.createElement("ul")
+  moreInfoUl.classList.add("more-info-ul")
+  moreInfoUl.id = `ul:${formObj.zipcode}`
+
+  moreInfoContainer.append(moreInfoUl)
+  
+  
 
   const ulContainer = document.createElement("div")
   ulContainer.classList.add("ul-container")
@@ -35,6 +53,7 @@ export const resultsContainerDiv = async (formObj) => {
 
   const date = document.createElement("li");
   date.classList.add("results-date")
+  date.id = `${formObj.date}`
   date.textContent = `Date: ${formObj.date}`;
 
   const timezone = document.createElement("li");
@@ -57,7 +76,7 @@ export const resultsContainerDiv = async (formObj) => {
   resultsContainer.append(latestResultContainer)
   
   
-  latestResultContainer.append(ulContainer, moreInfoButtonContainer)
+  latestResultContainer.append(ulContainer, moreInfoButtonContainer, moreInfoContainer)
 
 
 
@@ -66,6 +85,25 @@ export const resultsContainerDiv = async (formObj) => {
   try {
     // fetch location data using provided zip code 
     const { latitude, longitude, city, state } = await getLocationData(formObj.zipcode);
+
+    const preJsonFormObj = {
+      zipcode: formObj.zipcode,
+      date: formObj.date,
+      latitude: latitude,
+      longitude: longitude,
+      timezone: formObj.timezone
+    }
+
+    const jsonFormObj = `${JSON.stringify(preJsonFormObj)}`
+
+
+    moreInfoButton.id = jsonFormObj
+
+    // console.log(moreInfoButton)
+
+    // console.log(JSON.parse(moreInfoButton.id))
+
+
 
     location.textContent = `Location: ${city}, ${state} ${formObj.zipcode}`;
     coords.textContent = `Latitude, Longitude: ${latitude}, ${longitude}`;
