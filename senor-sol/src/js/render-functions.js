@@ -1,3 +1,5 @@
+import { convertToTimezone } from "./helper-functions";
+
 export const defaultContainerDiv = async (latLongObj, sunRiseSetDateObj) => {
   const ul = document.getElementById("default-info");
   // ul.innerHTML = ``;
@@ -97,5 +99,5 @@ export const renderMoreInfo = (moreInfoObj, zipcode, timezone) => {
   moreInfoUl.append(solarNoonLi, dayLengthLi, civilTwilightBeginLi, civilTwilightEndLi, nauticalTwilightBeginLi, nauticalTwilightEndLi, astTwilightBeginLi, astTwilightEndLi)
 }
 
-};
+
 

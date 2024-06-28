@@ -1,4 +1,4 @@
-/* :root {
+:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -12,6 +12,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* * {
+  box-sizing: border-box;
+  margin: 0;
+  object-fit: 0;
+} */
+
 
 a {
   font-weight: 500;
@@ -93,4 +100,62 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-} */
+}
+
+
+#default-info {
+  list-style: none;
+}
+
+.results-list {
+  list-style: none;
+}
+
+.more-info-ul {
+  list-style: none;
+}
+
+#everything-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+#entire-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vh;
+}
+
+#results-section {
+  border: 1px solid; /* Define the border width */
+  border-image: linear-gradient(0deg, rgba(38,70,83,1) 0%, rgba(42,157,143,1) 25%, rgba(233,196,106,1) 50%, rgba(244,162,97,1) 75%, rgba(231,111,81,1) 100%);
+  border-image-slice: 1; /* Ensures the gradient covers the entire border */
+  border-radius: 10px;
+  padding: 1.5rem;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+#default-sun-container {
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#all-info-container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; 
+  justify-content: center;
+  align-items: center; 
+}
+
+#sun-form {
+  align-items: center;
+
+}
+
