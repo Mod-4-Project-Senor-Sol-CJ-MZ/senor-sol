@@ -1,7 +1,10 @@
 import './style.css'
-import { handleSubmit } from './js/event-listener-functions';
+
 import { defaultContainerDiv, renderMoreInfo } from './js/render-functions'
 import { userDefaultLatnLong, getDefaultSunriseSunset, getSunriseSunsetMoreInfo } from './js/fetch-functions'
+
+import { handleSubmit, handleLuckyClick } from './js/event-listener-functions';
+
 
 
 const main = async () => {
@@ -15,6 +18,10 @@ const main = async () => {
   const form = document.querySelector("#sunForm");
   form.addEventListener("submit", handleSubmit);
 
+
+
+  const luckyButton = document.getElementById("lucky-button");
+  luckyButton.addEventListener("click", handleLuckyClick);
 
 };
 

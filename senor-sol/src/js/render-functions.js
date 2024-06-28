@@ -1,13 +1,7 @@
-import { getLocationData, getSunriseSunset, getSunriseSunsetMoreInfo } from './fetch-functions';
-import { convertToTimezone } from './helper-functions';
-
 export const defaultContainerDiv = async (latLongObj, sunRiseSetDateObj) => {
   const ul = document.getElementById("default-info");
   // ul.innerHTML = ``;
   console.log(latLongObj, sunRiseSetDateObj)
-  
-
-
   
   // const zipcode = document.createElement("li");
   // zipcode.classList.add("default-zipcode")
@@ -16,6 +10,8 @@ export const defaultContainerDiv = async (latLongObj, sunRiseSetDateObj) => {
   const date = document.createElement("li");
   date.classList.add("default-date")
   date.textContent = `Date: ${sunRiseSetDateObj.currentDate}`;
+  // date.textContent = `Date: ${new Date().toISOString().split('T')[0]}`;
+
   // console.log('testttt', `Date: ${sunRiseSetDateObj.currentDate}`)
 
   // const timezone = document.createElement("li");
@@ -51,6 +47,7 @@ export const defaultContainerDiv = async (latLongObj, sunRiseSetDateObj) => {
   } catch (error) {
     console.warn(error);
   }
+
 };
 
 export const renderMoreInfo = (moreInfoObj, zipcode, timezone) => {
@@ -61,10 +58,8 @@ export const renderMoreInfo = (moreInfoObj, zipcode, timezone) => {
 
   const {solarNoon, dayLength, civilTwilightBegin, civilTwilightEnd, nauticalTwilightBegin, nauticalTwilightEnd, astTwilightBegin, astTwilightEnd} = moreInfoObj
 
-  // console.log(moreInfoObj)
   const solarNoonLi = document.createElement("li")
   solarNoonLi.textContent = `Solar Noon: ${convertToTimezone(solarNoon, timezone)}`
-  // console.log(solarNoonLi)
 
   const convertSeconds = (seconds) => {
     const hours = Math.floor(seconds / 3600)
@@ -101,3 +96,6 @@ export const renderMoreInfo = (moreInfoObj, zipcode, timezone) => {
 
   moreInfoUl.append(solarNoonLi, dayLengthLi, civilTwilightBeginLi, civilTwilightEndLi, nauticalTwilightBeginLi, nauticalTwilightEndLi, astTwilightBeginLi, astTwilightEndLi)
 }
+
+};
+
