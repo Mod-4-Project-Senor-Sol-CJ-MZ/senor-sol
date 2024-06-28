@@ -18,6 +18,11 @@ export const handleSubmit = async (event) => {
 
   // Call resultsContainerDiv to update the results section
   await resultsContainerDiv(formObj);
+  
+  
+  
+  //THIS IS FOR TESTING REMOVE ONCE YOU FIGURED OUT HOW TO AUTOMATICALLY DISPLAY IT ON LOAD
+  await defaultContainerDiv(formObj)
 
   form.reset();
 };
